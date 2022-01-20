@@ -807,12 +807,12 @@ print.summary.multisynth <- function(x, level = "Average", ...) {
 
     cat(paste("Average ATT Estimate (Std. Error): ",
               summ$att %>%
-                  filter(Level = "Average", Time >= 0, !is.na(Time)) %>%
+                  filter(Level == "Average", Time >= 0, !is.na(Time)) %>%
                   pull(Estimate) %>%
                   mean(),
               "  (",
               summ$att %>%
-                  filter(Level = "Average", Time >= 0, !is.na(Time)) %>%
+                  filter(Level == "Average", Time >= 0, !is.na(Time)) %>%
                   pull(Std.Error) %>%
                   mean(),
               ")\n\n", sep=""))
