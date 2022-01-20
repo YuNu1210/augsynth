@@ -797,7 +797,7 @@ print.summary.multisynth <- function(x, level = "Average", ...) {
     ## get ATT estimates for treatment level, post treatment
     if(summ$relative) {
         summ$att %>%
-            filter(Time >= 0, Level==level, is.na(Estimate)) %>%
+            filter(Time >= 0, Level==level, !is.na(Estimate)) %>%
             rename("Time Since Treatment"=Time) -> att_est
     } else if(level == "average") {
         summ$att %>% filter(Time > first_lvl, Level=="Average") -> att_est
