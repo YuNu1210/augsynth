@@ -807,14 +807,14 @@ print.summary.multisynth <- function(x, level = "Average", ...) {
 
     cat(paste("Average ATT Estimate (Std. Error): ",
               summ$att %>%
-                  filter(Level == level, is.na(Time)) %>%
+                  filter(Level = "Average", Time >= 0, !is.na(Time)) %>%
                   pull(Estimate) %>%
-                  round(3) %>% format(nsmall=3),
+                  mean(),
               "  (",
               summ$att %>%
-                  filter(Level == level, is.na(Time)) %>%
+                  filter(Level = "Average", Time >= 0, !is.na(Time)) %>%
                   pull(Std.Error) %>%
-                  round(3) %>% format(nsmall=3),
+                  mean(),
               ")\n\n", sep=""))
     
     cat(paste("Global L2 Imbalance: ",
