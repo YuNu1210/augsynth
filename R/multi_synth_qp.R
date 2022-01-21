@@ -133,7 +133,6 @@ multisynth_qp <- function(X, trt, mask, Z = NULL, n_leads=NULL, n_lags=NULL,
                  
     ## make matrices for QP
     n0s <- sapply(Xc, nrow)
-    n0s <- sapply(Xc, function(j) colSums(Xc(j)))
     if(any(n0s == 0)) {
       stop("Some treated units have no possible donor units!")
     }
