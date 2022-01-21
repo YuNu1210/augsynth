@@ -123,11 +123,13 @@ multisynth_qp <- function(X, trt, mask, Z = NULL, n_leads=NULL, n_lags=NULL,
     }
     dz <- ncol(Zc[[1]])
 
-    # replace NA values with zero
+    # replace NA values with zero 
     # x_t <- lapply(x_t, function(xtk) tidyr::replace_na(xtk, 0))
 
+    x_t <- lapply(x_t, function(xtk) xtk[!is.na(xtk)]) 
+                  
     # Xc <- lapply(Xc, function(xck) tidyr::replace_na(xck, 0))
-
+    
                  
     ## make matrices for QP
     n0s <- sapply(Xc, nrow)
