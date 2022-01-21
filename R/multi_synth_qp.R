@@ -124,18 +124,18 @@ multisynth_qp <- function(X, trt, mask, Z = NULL, n_leads=NULL, n_lags=NULL,
     dz <- ncol(Zc[[1]])
 
     # replace NA values with zero 
-    # x_t <- lapply(x_t, function(xtk) tidyr::replace_na(xtk, 0))
+    x_t <- lapply(x_t, function(xtk) tidyr::replace_na(xtk, 0))
 
-    x_t <- lapply(x_t, function(xtk) xtk[!is.na(xtk)]) 
+    # x_t <- lapply(x_t, function(xtk) xtk[!is.na(xtk)]) 
                   
     Xc <- lapply(Xc, function(xck) tidyr::replace_na(xck, 0))
     
                  
     ## make matrices for QP
     n0s <- sapply(Xc, nrow)
-    if(any(n0s == 0)) {
-      stop("Some treated units have no possible donor units!")
-    }
+    # if(any(n0s == 0)) {
+    #  stop("Some treated units have no possible donor units!")
+    # }
     n0 <- sum(n0s)
 
     const_mats <- make_constraint_mats(trt, grps, n_leads, n_lags, Xc, Zc, d, n1)
